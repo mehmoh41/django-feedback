@@ -1,0 +1,21 @@
+{% extends 'reviews/base.html' %}
+{% comment %} serializable errors is because you are not storing objects but only ids {% endcomment %}
+{% block title %}
+    Review Detail
+{% endblock  %}
+
+{% block content %}
+    <h1>{{ object.user_name }}</h1>
+    <p>{{ review.rating }}</p>
+    <p>{{ review.review_text }}</p>
+    {% if is_favorite %}
+            <p>This is my favorite review.</p>
+    {% else %}
+    <form action="/reviews/favorite" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="review_id" value="{{ review.id }}">
+        <button class="fav">Favorite</button>
+    </form>
+    {% endif %}
+    
+{% endblock  %}

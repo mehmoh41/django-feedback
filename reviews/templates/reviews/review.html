@@ -1,0 +1,32 @@
+{% extends 'reviews/base.html' %}
+{% load static %}
+
+    {% block title %}
+        Your Reviews
+    {% endblock %}
+
+    {% block content %}
+    <form action="" method="POST" class="form">
+        {% csrf_token %}
+        <div class="form-control ">
+        <div class="{% if form.user_name.errors %}errors{% endif %}">
+            {{ form.user_name.label_tag }}
+            {{ form.user_name }}
+            {{ form.user_name.errors }}
+        </div>
+        <div class="{% if form.review_text.errors %}errors{% endif %}">
+            {{ form.review_text.label_tag }}
+            {{ form.review_text }}
+            {{ form.review_text.errors }}
+        </div>
+        <div class="{% if form.rating.errors %}errors{% endif %}">
+            {{ form.rating.label_tag }}
+            {{ form.rating }}
+            {{ form.rating.errors }}
+
+        </div>
+        
+        </div>
+        <button type="submit">Send</button>
+    </form>
+    {% endblock  %}
